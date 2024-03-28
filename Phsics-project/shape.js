@@ -6,7 +6,6 @@ class Shape {
     this.pos = pos;
     this.size = size;
     this.body = this.createBody(pos, options);
-    
     Matter.Composite.add(engine.world, this.body);
   }
 
@@ -16,6 +15,19 @@ class Shape {
 
   display() {
     
+  }
+
+  isDead() {
+    if (this.body.position.y > height + 100) {
+      Matter.Composite.remove(this.world, this.body);
+      return true;
+    }
+    return false;
+  }
+
+  animAngle(targetAngle) {
+    let angle = lerp(this.body.angle, targetAngle, 0.3);
+    Matter.Body.setAngle(this.body, angle);
   }
 
 
