@@ -1,6 +1,7 @@
 let engine;
 let shapes = [];
 let walls;
+let mouse;
 //let leftPaddle;
 //let rightPaddle;
 
@@ -35,18 +36,42 @@ function setup() {
       }
       this.createCircle(
         10, height-10, options);
+      this.createShape(random(width*0.75,width),height/2,null)
+      
     }
   }, 1000);
 }
 
+
+
 function createCircle(x, y, options) {
-  let shape = new Circle(engine.world,
+  let circle = new Circle(engine.world,
       createVector(x, y), 
       createVector(25, 25),
       options);
   
+  shapes.push(circle);
+}
+
+
+function createShape(x, y, options) {
+  let shape;
+  if (random() > 0.5) {
+    shape = new Rect(engine.world,
+      createVector(x, y), 
+      createVector(random(10, 50), random(10,50)),
+      options);
+  } else {
+    shape = new Circle(engine.world,
+      createVector(x, y), 
+      createVector(random(10, 50), random(10,50)),
+      options);
+  }
   shapes.push(shape);
 }
+
+
+
 
 function draw() {
   background(200);
