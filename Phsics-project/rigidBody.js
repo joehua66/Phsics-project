@@ -8,7 +8,7 @@ class RigidBody {
   }
 
   applyForce(force) {
-    this.acc.add(force);
+    this.acc.add(force); 
   }
 
   update(size) {
@@ -35,6 +35,8 @@ class RigidBody {
   display() {
     fill(this.size * 35);
     circle(this.loc.x, this.loc.y, this.size);
+
+    
     /*push();
 
     translate(this.loc.x, this.loc.y);
